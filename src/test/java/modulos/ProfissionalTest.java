@@ -152,4 +152,43 @@ public class ProfissionalTest {
         //Vou fechar o navegador
         navegador.quit();
     }
+
+    @Test
+    @DisplayName("Teste Cadastrar Usuario")
+    public void testCriarContaUsuario(){
+        //Abrir navegador
+        System.setProperty("webdrive.chrome.driver", "C:\\Workspace_Intellij\\LacreiSaudeAutomacaoWeb\\Drivers\\chromedriver-win64\\chromedriver.exe");
+
+        //Vou maximizar a tela
+        navegador.manage().window().maximize();
+
+        //Definir tempo de espera padrão de 5 segundos
+        navegador.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        //Navegar para a pagina da lojinha web
+        navegador.get("https://paciente-staging.lacreisaude.com.br/");
+
+        //Criar Conta de Usuário
+        navegador.findElement(By.xpath("/html//section[@id='main-section']//form//button[@type='button']")).click();
+
+        //Nome civil ou social
+        navegador.findElement(By.id("first_name")).sendKeys("Novo");
+        //Sobrenome
+        navegador.findElement(By.id("last_name")).sendKeys("Usuario");
+        //E-mail
+        navegador.findElement(By.id("email")).sendKeys("novousuario@gmail.com");
+        //Confirme seu e-mail
+        navegador.findElement(By.id("email2")).sendKeys("novousuario@gmail.com");
+        //Senha
+        navegador.findElement(By.id("password1")).sendKeys("Novo@123");
+        //Confirme sua senha
+        navegador.findElement(By.id("password2")).sendKeys("Novo@123");
+        //Termos de uso
+        navegador.findElement(By.xpath("/html//section[@id='main-section']/div[@class='content-container']/form/div[@class='checkbox-container']/div[1]/label/span[@class='check-container']/span")).click();
+        //Tenho 18 anos ou mais
+        navegador.findElement(By.xpath("/html//section[@id='main-section']/div[@class='content-container']/form/div[@class='checkbox-container']/div[2]/label/span[@class='check-container']/span")).click();
+        //Cadastrar
+        navegador.findElement(By.xpath("/html//section[@id='main-section']//form//button[@type='submit']")).click();
+
+    }
 }
